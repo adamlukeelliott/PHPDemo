@@ -1,3 +1,7 @@
+<?php
+    require 'postMessage.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +31,33 @@
                 <a class="btn btn-primary btn-lg" href="https://github.com/adamlukeelliott/PHPDemo" role="button">Source Code</a>
             </p>
         </div>
+
+        <form method="POST" action="postMessage.php">
+            <div class="form-group mb-2">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Name"/>
+            </div>
+            <div class="form-group mb-2">
+                <label for="message">Message</label>
+                <textarea type="text" class="form-control" name="message" placeholder="Message"></textarea>
+            </div>
+            <div class="form-group mb-2">
+                <input class="btn btn-primary btn-lg" type="submit" />
+            </div>
+        </form>
+        <?php
+            if (isset($_REQUEST["success"])) {
+                if ($_REQUEST["success"]) {
+                    echo '<div class="alert alert-primary" role="alert">
+                            Message posted!
+                        </div>';
+                } else {
+                    echo '<div class="alert alert-danger" role="alert">
+                            Name and message cannot be empty!
+                        </div>';
+                }
+            }
+        ?>
     </div>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
